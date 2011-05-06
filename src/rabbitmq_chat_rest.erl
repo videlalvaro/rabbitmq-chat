@@ -35,8 +35,8 @@ handle_http(#http_state{req=Req}=State, _Port) ->
 handle('GET', [], #http_state{req=Req}) ->
     Req:file("./priv/www/index.html", [{"Content-Type", "text/html"}]);
 
-handle('GET',["img", "favicon.png"], #http_state{req=Req}) ->
-    Req:file("./priv/www/img/favicon.png", [{"Content-Type", "image/png"}]);
+handle('GET',["favicon.ico"], #http_state{req=Req}) ->
+    Req:file("./priv/www/favicon.ico", [{"Content-Type", "image/vnd.microsoft.icon"}]);
 
 %% TODO add file exist support, E-TAGS, etc.
 handle('GET', ["js", FileName], #http_state{req=Req}) ->
