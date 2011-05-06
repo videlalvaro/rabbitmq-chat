@@ -1,0 +1,19 @@
+{application, rabbitmq_chat,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {modules, [
+                rabbitmq_chat,
+                rabbitmq_chat_app,
+                rabbitmq_chat_consumer,
+                rabbitmq_chat_rest,
+                rabbitmq_chat_sup
+            ]},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { rabbitmq_chat_app, []}},
+  {env, [{port, 8080}]}
+ ]}.

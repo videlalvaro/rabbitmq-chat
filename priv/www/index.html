@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RMQChat - The RabbitMQ-powered Chatroom</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+  </head>
+  <body>
+    <h1>RMQChat - The RabbitMQ-powered Chatroom</h1>
+    <ol id='chatlog' style='display: none'></ol>
+    <form id='login' method='post' action='nowhere'>
+      <fieldset>
+        <legend>Sign in</legend>
+        <ol>
+          <li>
+            <label for='name'>Name</label>
+            <input id='name' name='name' type='text'>
+          </li>
+          <li>
+            <label for='email'>Email (for gravatars)</label>
+            <input id='email' name='email' type='email'>
+          </li>
+          <li>
+            <input type='submit' value='Down the Rabbit Hole!'>
+          </li>
+        </ol>
+      </fieldset>
+    </form>
+    <form id='chatbox' method='post' style='display: none' action='nowhere'>
+      <fieldset>
+        <ol>
+          <li>
+            <label for='message'>Message</label>
+            <input type='text' id='message'>
+          </li>
+        </ol>
+      </fieldset>
+    </form>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.base64.min.js"></script>
+    <script type="text/javascript" src="js/cookie.js"></script>
+    <script type="text/javascript" src="js/json2.js"></script>
+    <script type="text/javascript" src="js/md5-min.js"></script>
+    <script type="text/javascript" src="js/rmqchat.js"></script>
+  </body>
+</html>
