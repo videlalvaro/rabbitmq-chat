@@ -45,3 +45,7 @@ Point your browser to [http://localhost:8080/](http://localhost:8080/). Invite y
 Inspired by [YakRiak](https://github.com/seancribbs/yakriak)
 
 Original design adapted from __YakRiak__. Thanks [Basho](http://basho.com/) and the crew, specially [@pharkmillups](http://twitter.com/#!/pharkmillups) for being an awesome community manager.
+
+## License ##
+
+See LICENSE.md
