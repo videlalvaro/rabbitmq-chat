@@ -31,9 +31,10 @@ Compile the source code:
 
 - Start the server:
 
+
     $ ./start-dev.sh
 
-Go with your browser to [http://localhost:8080/](http://localhost:8080/). Invite your friends. Enjoy!
+Point your browser to [http://localhost:8080/](http://localhost:8080/). Invite your friends. Enjoy!
 
 ## Credits ##
 
