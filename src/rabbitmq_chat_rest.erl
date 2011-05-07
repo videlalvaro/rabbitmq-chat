@@ -4,7 +4,7 @@
 -include("amqp_client.hrl").
 
 -record(http_state, {req}).
--record(websocket_state, {ws, conn, exchange, chann, consumer, user_nb=0}).
+-record(websocket_state, {ws, conn, exchange, chann, consumer}).
 
 -define(EXCHANGE_NAME, <<"chat_room">>).
 
@@ -63,7 +63,7 @@ handle(_, _, #http_state{req=Req}) ->
     Req:ok([{"Content-Type", "text/plain"}], "Page not found.").
 
 %% callback on received websockets data
-handle_websocket(#websocket_state{ws=Ws, conn=Conn, exchange=Exchange, user_nb=_Unb} = State) ->
+handle_websocket(#websocket_state{ws=Ws, conn=Conn, exchange=Exchange} = State) ->
     Chann = get_chann(State#websocket_state.chann, Conn),
     Consumer = maybe_start_consumer(State#websocket_state.consumer, [Chann, Exchange, self()]),
     State2 = State#websocket_state{chann=Chann, consumer=Consumer},
