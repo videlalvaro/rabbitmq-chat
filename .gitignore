@@ -2,3 +2,5 @@ ebin/
 deps/
 erl_crash.dump
 log/sasl-error.log
+priv/chat.config
+priv/chat_dev.config
