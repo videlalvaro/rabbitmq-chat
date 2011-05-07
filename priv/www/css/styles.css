@@ -21,9 +21,9 @@ h1 {
 
 ol#chatlog {
    margin:0;
-   height: 75%;
-   min-height: 75%;
-   max-height: 75%;
+   height: 600px;
+   min-height: 600px;
+   max-height: 600px;
    overflow-y: auto;
    overflow-x: hidden;
    padding: 0 3px;
