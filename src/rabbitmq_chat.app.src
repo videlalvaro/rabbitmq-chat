@@ -7,7 +7,8 @@
                 rabbitmq_chat_app,
                 rabbitmq_chat_consumer,
                 rabbitmq_chat_rest,
-                rabbitmq_chat_sup
+                rabbitmq_chat_sup,
+                rmqchat_utils.erl
             ]},
   {registered, []},
   {applications, [
