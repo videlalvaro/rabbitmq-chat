@@ -6,6 +6,8 @@ The chat server uses Websockets to send messages to the connected users. This me
 
 On the RabbitMQ side there it uses a _custom exchange_ to store the last 20 messages, so new users connecting to the chat room can get a context of what's going on. See the project [Recent History Exchange](https://github.com/videlalvaro/rabbitmq-recent-history-exchange) for installation instructions.
 
+This will be used as an example for the book [RabbitMQ in Action](http://bit.ly/rabbitmq).
+
 ## Requirements ##
 
 The [Recent History Exchange](https://github.com/videlalvaro/rabbitmq-recent-history-exchange) _has to be installed_ prior to running this application.
