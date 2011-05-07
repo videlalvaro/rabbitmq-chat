@@ -1,4 +1,4 @@
 #!/bin/sh
 cd `dirname $0`
 exec erl -sname rmqchat -pa $PWD/ebin $PWD/deps/*/ebin \
--boot start_sasl -sasl_dev ./priv/chat -s rabbitmq_chat
+-s rabbitmq_chat -config ./priv/chat_dev -boot start_sasl -config ./priv/sasl_dev

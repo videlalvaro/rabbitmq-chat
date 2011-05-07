@@ -35,12 +35,25 @@ Compile the source code:
 
 - Start RabbitMQ if is not running already.
 
-- Start the server:
+### Running in development mode ###
 
+Edit the file `./priv/chat_dev.config` to suit your RabbitMQ configuraion.
+
+Start the server:
 
     $ ./start-dev.sh
 
 Point your browser to [http://localhost:8080/](http://localhost:8080/). Invite your friends. Enjoy!
+
+### Running in production mode ###
+
+Create a file called `./priv/chat.config` with the proper values to suit your RabbitMQ configuraion.
+
+See the file `./priv/chat_dev.config` for an example of the configuraion format.
+
+Start the server:
+
+    $ ./start.sh
 
 ## Credits ##
 

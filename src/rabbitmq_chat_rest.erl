@@ -4,13 +4,21 @@
 -include("amqp_client.hrl").
 
 -record(http_state, {req}).
--record(websocket_state, {ws, conn, exchange, chann, consumer}).
+-record(websocket_state, {ws, conn, exchange, chann, consumer, user_nb=0}).
 
 -define(EXCHANGE_NAME, <<"chat_room">>).
 
 %% start misultin http server
 start_link(Port) ->
-    {ok, Conn} = amqp_connection:start(network, #amqp_params{}),
+    {ok, User} = application:get_env(rabbitmq_chat, rabbit_user),
+    {ok, Pass} = application:get_env(rabbitmq_chat, rabbit_pass),
+    {ok, Vhost} = application:get_env(rabbitmq_chat, rabbit_vhost),
+    {ok, Host} = application:get_env(rabbitmq_chat, rabbit_host),
+    {ok, RabbitPort} = application:get_env(rabbitmq_chat, rabbit_port),
+    ConnParams = #amqp_params{username = User, password=Pass,
+                              virtual_host = Vhost, host = Host,
+                              port = RabbitPort},
+    {ok, Conn} = amqp_connection:start(network, ConnParams),
     {ok, Chann} = amqp_connection:open_channel(Conn),
     amqp_channel:call(Chann,
                       #'exchange.declare'{ exchange = ?EXCHANGE_NAME,
@@ -49,10 +57,13 @@ handle('GET', ["js", FileName], #http_state{req=Req}) ->
     Req:file(filename:join("./priv/www/js/", FileName), [{"Content-Type", "text/javascript"}]);
 
 handle('GET', ["css", FileName], #http_state{req=Req}) ->
-    Req:file(filename:join("./priv/www/css/", FileName), [{"Content-Type", "text/css"}]).
+    Req:file(filename:join("./priv/www/css/", FileName), [{"Content-Type", "text/css"}]);
+
+handle(_, _, #http_state{req=Req}) ->
+    Req:ok([{"Content-Type", "text/plain"}], "Page not found.").
 
 %% callback on received websockets data
-handle_websocket(#websocket_state{ws=Ws, conn=Conn, exchange=Exchange} = State) ->
+handle_websocket(#websocket_state{ws=Ws, conn=Conn, exchange=Exchange, user_nb=_Unb} = State) ->
     Chann = get_chann(State#websocket_state.chann, Conn),
     Consumer = maybe_start_consumer(State#websocket_state.consumer, [Chann, Exchange, self()]),
     State2 = State#websocket_state{chann=Chann, consumer=Consumer},
