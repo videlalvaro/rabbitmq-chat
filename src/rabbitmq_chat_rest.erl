@@ -64,6 +64,7 @@ handle(_, _, #http_state{req=Req}) ->
 
 %% callback on received websockets data
 handle_websocket(#websocket_state{ws=Ws, conn=Conn, exchange=Exchange} = State) ->
+    maybe_log_message(State#websocket_state.chann),
     Chann = get_chann(State#websocket_state.chann, Conn),
     Consumer = maybe_start_consumer(State#websocket_state.consumer, [Chann, Exchange, self()]),
     State2 = State#websocket_state{chann=Chann, consumer=Consumer},
@@ -96,3 +97,10 @@ maybe_start_consumer(undefined, Args) ->
     Pid;
 maybe_start_consumer(Consumer, _) when is_pid(Consumer) ->
     Consumer.
+
+
+maybe_log_message(undefined) ->
+    error_logger:info_msg("User connected~n", []);
+maybe_log_message(_Chann) ->
+    ok.
+
