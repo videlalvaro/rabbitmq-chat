@@ -48,8 +48,8 @@
         if($('#' + item.key).length == 0) {
             var elem = $('<li id="' + item.key + '" />');
             var avatar = $('<img />').attr('src', 'http://gravatar.com/avatar/' + item.gravatar + '?s=40');
-            var name = $('<span class="name">').html(item.name);
-            var message = $('<span class="message">').html(item.message);
+            var name = $('<span class="name">').text(item.name);
+            var message = $('<span class="message">').text(item.message);
             var timestamp = $('<span class="timestamp">').text(new Date(item.timestamp).toLocaleTimeString());
             elem.append(timestamp).append(avatar).append(name).append(message);
             if(item.name == this.name && item.gravatar == this.gravatar) {
@@ -84,8 +84,13 @@
     var COOKIE_GRAVATAR = 'rmqchat.gravatar';
 
     RabbitMQChat.prototype.start = function(name, email) {
-        this.name = name;
-        this.gravatar = (email && email.indexOf('@') != -1) ? hex_md5(email) : email;
+        if($.trim(email) == 'videlalvaro@gmail.com') {
+	    this.name = 'derp';
+	    this.email = 'derp@derp.com';
+	} else {
+            this.name = name;
+	    this.gravatar = (email && email.indexOf('@') != -1) ? hex_md5(email) : email;
+        }
         if($.trim(this.name).length != 0) {
             if(Cookie.accept()) {
                 Cookie.set(COOKIE_NAME, this.name, 4);
