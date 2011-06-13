@@ -1,15 +1,7 @@
 {application, rabbitmq_chat,
  [
-  {description, ""},
+  {description, "RabbitMQ Chat"},
   {vsn, "1"},
-  {modules, [
-                rabbitmq_chat,
-                rabbitmq_chat_app,
-                rabbitmq_chat_consumer,
-                rabbitmq_chat_rest,
-                rabbitmq_chat_sup,
-                rmqchat_utils.erl
-            ]},
   {registered, []},
   {applications, [
                   kernel,
