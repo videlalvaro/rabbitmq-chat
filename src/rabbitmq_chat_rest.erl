@@ -1,7 +1,7 @@
 -module(rabbitmq_chat_rest).
 -export([start_link/1, stop/0]).
 
--include("amqp_client.hrl").
+-include_lib("amqp_client/include/amqp_client.hrl").
 
 -record(http_state, {req}).
 -record(websocket_state, {ws, conn, exchange, chann, consumer}).
